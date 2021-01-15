@@ -109,7 +109,9 @@ class SignInPage extends StatelessWidget {
                   child: Text(
                     'Sign In',
                     style: TextStyle(
-                        color: blue, fontSize: 40, fontWeight: FontWeight.bold),
+                        color: black,
+                        fontSize: 35,
+                        fontWeight: FontWeight.bold),
                   ),
                 ),
                 Positioned(
@@ -142,7 +144,7 @@ class SignInPage extends StatelessWidget {
                     child: Text(
                       'Sign Up',
                       style: TextStyle(
-                          color: blue,
+                          color: black,
                           fontSize: 18,
                           decoration: TextDecoration.underline),
                     ),
@@ -158,7 +160,7 @@ class SignInPage extends StatelessWidget {
                     child: Text(
                       'Forget Password',
                       style: TextStyle(
-                          color: blue,
+                          color: black,
                           fontSize: 18,
                           decoration: TextDecoration.underline),
                     ),

@@ -133,7 +133,7 @@ class SignUpPage extends StatelessWidget {
                   'Sign Up',
                   style: TextStyle(
                       color: bgColor,
-                      fontSize: 40,
+                      fontSize: 35,
                       fontWeight: FontWeight.bold),
                 ),
               ),
