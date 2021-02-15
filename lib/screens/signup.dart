@@ -4,8 +4,15 @@ import 'package:loginForShop/screens/signin.dart';
 import '../clips/signUpClips.dart';
 import 'package:loginForShop/config.dart';
 
-class SignUpPage extends StatelessWidget {
+class SignUpPage extends StatefulWidget {
   static const routename = '/signup';
+
+  @override
+  _SignUpPageState createState() => _SignUpPageState();
+}
+
+class _SignUpPageState extends State<SignUpPage> {
+  bool _obscure = true;
   @override
   Widget build(BuildContext context) {
     final totalHeight = MediaQuery.of(context).size.height;
@@ -38,9 +45,9 @@ class SignUpPage extends StatelessWidget {
                       child: Text(
                         'Create Account',
                         style: TextStyle(
-                            fontFamily: 'NotoSansJP',
+                            fontFamily: 'Truculenta',
                             color: Colors.white,
-                            fontSize: 35,
+                            fontSize: 45,
                             fontWeight: FontWeight.bold),
                       ),
                     ),
@@ -69,60 +76,94 @@ class SignUpPage extends StatelessWidget {
                   ),
                 ),
               ),
-              Container(
-                padding: EdgeInsets.symmetric(horizontal: 30),
-                height: totalHeight,
-                width: totalWidth,
-                decoration: BoxDecoration(color: Colors.transparent),
-                child: Align(
-                  alignment: Alignment.center,
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Padding(
-                        padding: EdgeInsets.symmetric(vertical: 10),
-                        child: TextField(
-                          decoration: InputDecoration(
-                            hintText: 'Name',
-                            hintStyle: TextStyle(
-                                color: bgColor, fontFamily: 'NotoSansJp'),
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: bgColor,
+              Positioned(
+                top: totalHeight * 0.4,
+                child: Container(
+                  padding: EdgeInsets.symmetric(horizontal: 30),
+                  height: totalHeight * 0.3,
+                  width: totalWidth,
+                  decoration: BoxDecoration(color: Colors.transparent),
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        Padding(
+                          padding: EdgeInsets.symmetric(vertical: 10),
+                          child: TextField(
+                            decoration: InputDecoration(
+                              hintText: 'Name',
+                              hintStyle: TextStyle(
+                                  color: bgColor, fontFamily: 'Truculenta'),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: bgColor,
+                                ),
+                              ),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: bgColor,
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(vertical: 10),
-                        child: TextField(
-                          decoration: InputDecoration(
-                            hintText: 'Email',
-                            hintStyle: TextStyle(color: bgColor),
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: bgColor,
+                        Padding(
+                          padding: EdgeInsets.symmetric(vertical: 10),
+                          child: TextField(
+                            decoration: InputDecoration(
+                              hintText: 'Email',
+                              hintStyle: TextStyle(
+                                  color: bgColor, fontFamily: 'Truculenta'),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: bgColor,
+                                ),
+                              ),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: bgColor,
+                                ),
                               ),
                             ),
                           ),
                         ),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.symmetric(vertical: 10),
-                        child: TextField(
-                          decoration: InputDecoration(
-                            hintText: 'Password',
-                            hintStyle: TextStyle(color: bgColor),
-                            enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(
-                                color: bgColor,
+                        Padding(
+                          padding: EdgeInsets.symmetric(vertical: 10),
+                          child: TextField(
+                            obscureText: _obscure,
+                            decoration: InputDecoration(
+                              suffixIcon: IconButton(
+                                icon: Icon(
+                                  (_obscure)
+                                      ? Icons.visibility_off
+                                      : Icons.visibility,
+                                  color: bgColor,
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    _obscure = !_obscure;
+                                  });
+                                },
+                              ),
+                              hintText: 'Password',
+                              hintStyle: TextStyle(
+                                  color: bgColor, fontFamily: 'Truculenta'),
+                              enabledBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: bgColor,
+                                ),
+                              ),
+                              focusedBorder: UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: bgColor,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ),
-                    ],
+                        )
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -133,29 +174,26 @@ class SignUpPage extends StatelessWidget {
                   'Sign Up',
                   style: TextStyle(
                       color: bgColor,
-                      fontSize: 35,
+                      fontSize: 45,
+                      fontFamily: 'Truculenta',
                       fontWeight: FontWeight.bold),
                 ),
               ),
               Positioned(
-                child: RaisedButton.icon(
-                  padding: EdgeInsets.all(10),
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(60),
+                child: SizedBox(
+                  height: 80,
+                  width: 80,
+                  child: FloatingActionButton(
+                    child: Icon(
+                      Icons.arrow_forward,
+                      color: bgColor,
+                      size: 30,
+                    ),
+                    backgroundColor: black,
+                    onPressed: () {
+                      Navigator.of(context).pushNamed(HomePage.routename);
+                    },
                   ),
-                  label: Text(
-                    '',
-                    style: TextStyle(color: bgColor, fontSize: 18),
-                  ),
-                  icon: Icon(
-                    Icons.arrow_forward,
-                    color: bgColor,
-                    size: 30,
-                  ),
-                  color: black,
-                  onPressed: () {
-                    Navigator.of(context).pushNamed(HomePage.routename);
-                  },
                 ),
                 right: totalWidth * 0.1,
                 bottom: totalHeight * 0.15,
@@ -169,6 +207,7 @@ class SignUpPage extends StatelessWidget {
                     style: TextStyle(
                         color: bgColor,
                         fontSize: 20,
+                        fontFamily: 'Truculenta',
                         decoration: TextDecoration.underline),
                   ),
                   onPressed: () {

@@ -5,70 +5,86 @@ import 'package:loginForShop/screens/homepage.dart';
 import 'package:loginForShop/screens/signup.dart';
 import '../clips/signInClips.dart';
 
-class SignInPage extends StatelessWidget {
+class SignInPage extends StatefulWidget {
   static const routename = '/signin';
+
+  @override
+  _SignInPageState createState() => _SignInPageState();
+}
+
+class _SignInPageState extends State<SignInPage> {
+  bool _obscure = true;
   @override
   Widget build(BuildContext context) {
     final height = MediaQuery.of(context).size.height;
     final width = MediaQuery.of(context).size.width;
     return Scaffold(
-      body: Container(
+        body: SingleChildScrollView(
+      child: Container(
           height: height,
           width: width,
-          decoration: BoxDecoration(color: bgColor),
-          child: SingleChildScrollView(
-            child: Stack(
-              children: [
-                ClipPath(
-                    clipper: RightClip(),
-                    child: Container(
-                      height: height * 0.4,
-                      width: width,
-                      decoration: BoxDecoration(color: blue),
-                    )),
-                ClipPath(
-                    clipper: LeftLargeClip(),
-                    child: Container(
-                      padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
-                      height: height * 0.5,
-                      width: width,
-                      decoration: BoxDecoration(color: black),
-                      child: Align(
-                        alignment: Alignment.centerLeft,
-                        child: FittedBox(
-                          fit: BoxFit.fitWidth,
-                          child: ConstrainedBox(
-                            constraints: BoxConstraints(maxWidth: width * 0.5),
-                            child: Text(
-                              'Welcome Back',
-                              style: TextStyle(
-                                  color: bgColor,
-                                  fontSize: 35,
-                                  fontWeight: FontWeight.bold),
-                              maxLines: 2,
+          color: bgColor,
+          child: Column(
+            children: [
+              Container(
+                height: height * 0.5,
+                width: width,
+                child: Stack(children: [
+                  ClipPath(
+                      clipper: RightClip(),
+                      child: Container(
+                        height: height * 0.4,
+                        width: width,
+                        decoration: BoxDecoration(color: blue),
+                      )),
+                  ClipPath(
+                      clipper: LeftLargeClip(),
+                      child: Container(
+                        padding: EdgeInsets.fromLTRB(20, 0, 0, 0),
+                        height: height * 0.5,
+                        width: width,
+                        decoration: BoxDecoration(color: black),
+                        child: Align(
+                          alignment: Alignment.centerLeft,
+                          child: FittedBox(
+                            fit: BoxFit.fitWidth,
+                            child: ConstrainedBox(
+                              constraints:
+                                  BoxConstraints(maxWidth: width * 0.5),
+                              child: Text(
+                                'Welcome Back',
+                                style: TextStyle(
+                                    color: bgColor,
+                                    fontSize: 45,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'Truculenta'),
+                                maxLines: 2,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    )),
-                ClipPath(
-                  clipper: LastTopClip(),
-                  child: Container(
-                    padding: EdgeInsets.all(20),
-                    decoration: BoxDecoration(color: orange),
-                    height: height * 0.15,
-                    width: width * 0.8,
+                      )),
+                  ClipPath(
+                    clipper: LastTopClip(),
+                    child: Container(
+                      padding: EdgeInsets.all(20),
+                      decoration: BoxDecoration(color: orange),
+                      height: height * 0.15,
+                      width: width * 0.8,
+                    ),
                   ),
-                ),
-                Container(
+                ]),
+              ),
+              Container(
+                height: height * 0.5,
+                width: width,
+                child: Container(
                   padding: EdgeInsets.symmetric(horizontal: 30),
-                  height: height,
-                  width: width,
                   decoration: BoxDecoration(color: Colors.transparent),
                   child: Align(
                     alignment: Alignment.center,
                     child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                       children: [
                         Padding(
                           padding: EdgeInsets.symmetric(vertical: 10),
@@ -76,7 +92,7 @@ class SignInPage extends StatelessWidget {
                             decoration: InputDecoration(
                               hintText: 'Username',
                               hintStyle: TextStyle(
-                                  color: blue, fontFamily: 'NotoSansJp'),
+                                  color: blue, fontFamily: 'Truculenta'),
                               enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                   color: blue,
@@ -88,9 +104,24 @@ class SignInPage extends StatelessWidget {
                         Padding(
                           padding: EdgeInsets.symmetric(vertical: 10),
                           child: TextField(
+                            obscureText: _obscure,
                             decoration: InputDecoration(
+                              suffixIcon: IconButton(
+                                icon: Icon(
+                                  (_obscure)
+                                      ? Icons.visibility_off
+                                      : Icons.visibility,
+                                  color: blue,
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    _obscure = !_obscure;
+                                  });
+                                },
+                              ),
                               hintText: 'Password',
-                              hintStyle: TextStyle(color: blue),
+                              hintStyle: TextStyle(
+                                  color: blue, fontFamily: 'Truculenta'),
                               enabledBorder: UnderlineInputBorder(
                                 borderSide: BorderSide(
                                   color: blue,
@@ -99,77 +130,81 @@ class SignInPage extends StatelessWidget {
                             ),
                           ),
                         ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(vertical: 10),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Sign In',
+                                style: TextStyle(
+                                    color: black,
+                                    fontSize: 45,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'Truculenta'),
+                              ),
+                              SizedBox(
+                                height: 80,
+                                width: 80,
+                                child: FloatingActionButton(
+                                  child: Icon(
+                                    Icons.arrow_forward,
+                                    color: bgColor,
+                                    size: 30,
+                                  ),
+                                  backgroundColor: black,
+                                  onPressed: () {
+                                    Navigator.of(context)
+                                        .pushNamed(HomePage.routename);
+                                  },
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        Padding(
+                          padding: EdgeInsets.symmetric(
+                            vertical: 10,
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              FlatButton(
+                                child: Text(
+                                  'Sign Up',
+                                  style: TextStyle(
+                                      color: black,
+                                      fontSize: 20,
+                                      fontFamily: 'Truculenta',
+                                      decoration: TextDecoration.underline),
+                                ),
+                                onPressed: () {
+                                  Navigator.of(context)
+                                      .pushNamed(SignUpPage.routename);
+                                },
+                              ),
+                              FlatButton(
+                                child: Text(
+                                  'Forget Password',
+                                  style: TextStyle(
+                                      color: black,
+                                      fontSize: 20,
+                                      fontFamily: 'Truculenta',
+                                      decoration: TextDecoration.underline),
+                                ),
+                                onPressed: () {},
+                              ),
+                            ],
+                          ),
+                        )
                       ],
                     ),
                   ),
                 ),
-                Positioned(
-                  bottom: height * 0.15,
-                  left: width * 0.1,
-                  child: Text(
-                    'Sign In',
-                    style: TextStyle(
-                        color: black,
-                        fontSize: 35,
-                        fontWeight: FontWeight.bold),
-                  ),
-                ),
-                Positioned(
-                  child: RaisedButton.icon(
-                    padding: EdgeInsets.all(10),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(60),
-                    ),
-                    label: Text(
-                      '',
-                      style: TextStyle(color: bgColor, fontSize: 18),
-                    ),
-                    icon: Icon(
-                      Icons.arrow_forward,
-                      color: bgColor,
-                      size: 30,
-                    ),
-                    color: black,
-                    onPressed: () {
-                      Navigator.of(context).pushNamed(HomePage.routename);
-                    },
-                  ),
-                  right: width * 0.1,
-                  bottom: height * 0.15,
-                ),
-                Positioned(
-                  bottom: height * 0.05,
-                  left: width * 0.05,
-                  child: FlatButton(
-                    child: Text(
-                      'Sign Up',
-                      style: TextStyle(
-                          color: black,
-                          fontSize: 18,
-                          decoration: TextDecoration.underline),
-                    ),
-                    onPressed: () {
-                      Navigator.of(context).pushNamed(SignUpPage.routename);
-                    },
-                  ),
-                ),
-                Positioned(
-                  bottom: height * 0.05,
-                  right: width * 0.05,
-                  child: FlatButton(
-                    child: Text(
-                      'Forget Password',
-                      style: TextStyle(
-                          color: black,
-                          fontSize: 18,
-                          decoration: TextDecoration.underline),
-                    ),
-                    onPressed: () {},
-                  ),
-                )
-              ],
-            ),
+              )
+            ],
           )),
-    );
+    ));
   }
 }
