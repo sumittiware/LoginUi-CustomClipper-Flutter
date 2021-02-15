@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Login UI',
       theme: ThemeData(
-          primaryColor: blue, accentColor: bgColor, fontFamily: 'NotoSansJP'),
+          primaryColor: blue, accentColor: bgColor, fontFamily: 'Truculenta'),
       home: SignInPage(),
       routes: {
         SignInPage.routename: (ctx) => SignInPage(),
