@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'MyShop',
+      title: 'Login UI',
       theme: ThemeData(
           primaryColor: blue, accentColor: bgColor, fontFamily: 'NotoSansJP'),
       home: SignInPage(),
